@@ -5,6 +5,8 @@ using System.Text;
 
 namespace ControlForestal
 {
+    //Class for drone flight control.
+    //Additional features such as collision control or multithreading should go here
     public class DroneController
     {
         public string processFile(string file)
@@ -13,6 +15,7 @@ namespace ControlForestal
             {
                 string result = "";
                 string[] lines = File.ReadAllLines(file);
+
                 //the first line is the flying area               
                 int[] area = getAreaFromString(lines[0].Replace(" ", ""));
                 if (area != null)
@@ -26,6 +29,10 @@ namespace ControlForestal
                             result = result + oDrone.startRoute() + Environment.NewLine;
                         }
                     }
+                } 
+                else
+                {
+                    return "Area configuration is not valid";
                 }
                 return result;
             } 
